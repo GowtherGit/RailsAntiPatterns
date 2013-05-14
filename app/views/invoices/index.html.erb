@@ -1,0 +1,32 @@
+<h1>Invoices</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Customer</th>
+    <th>State</th>
+    <th>Address</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @invoices.each do |invoice| %>
+  <tr>
+    <td><%= invoice.name %></td>
+    <td><%= link_to invoice.customer.name, invoice.customer %></td>
+    <td><%= invoice.state.name if invoice.state %></td>
+    <td><%= invoice.customer_street %>, 
+        <%= invoice.customer_city %>,
+        <%= invoice.customer_state %>,
+        <%= invoice.customer_zip_code %>
+    </td>
+    <td><%= link_to 'Show', invoice %></td>
+    <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+    <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Invoice', new_invoice_path %>
